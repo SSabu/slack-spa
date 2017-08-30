@@ -1,18 +1,13 @@
 // @flow
+import { WIDGET_ID } from '../Constants/index';
+import type { MessageType, Id, Dispatch, GetState } from '../FlowTypes/';
 
-import type {
-  MessageType,
-  Id,
-  Dispatch,
-  GetState,
-} from '../FlowTypes/';
-
-// const PATH = 'https://databraid.localtunnel.me';
-const PATH = 'http://localhost:4000/';
+// TODO: Needs to be an environmental variable
+const PATH = 'http://localhost:8001/';
 
 /* eslint func-names: ["error", "never"] */
 function fetchRequest(path) {
-  return fetch(path);
+  return fetch(path).then(response => response.json());
 }
 
 export function connectWithSlack() {
@@ -23,8 +18,9 @@ export function connectWithSlack() {
 
 export function fetchChannels() {
   return async function (dispatch: Dispatch) {
-    const response = await fetchRequest(`${PATH}channels`);
-    const channels = await response.json();
+    // TODO: This fetchRequest needs to be happening in SLACK_API file as a function named fetchChannels--or similar
+    const channels = await fetchRequest(`${PATH}channels`);
+
     dispatch({
       channels,
       type: 'RECEIVED_CHANNEL_LIST',
@@ -32,35 +28,30 @@ export function fetchChannels() {
   };
 }
 
-
 export function fetchMessagesForChannel(channel: string) {
   return async function (dispatch: Dispatch, getState: GetState) {
-    const oldMessages = getState().channelData[channel];
-    if (oldMessages) {
-      // Don't fetch again if we already have messages.
-      return;
-    }
-    // Mark that we have messages to avoid fetching multiple times.
+    const oldMessages = getState().widgets.byId[WIDGET_ID].channelData[channel];
+
+    if (oldMessages) return;
+    // TODO: This fetchRequest needs to be happening in SLACK_API file as a function named fetchMessagesForChannel--or similar
+    const messages = await fetchRequest(`${PATH}messages/${channel}`);
+
     dispatch({
       channel,
-      messages: {},
+      messages,
       type: 'RECEIVED_MESSAGES_FOR_CHANNEL',
     });
-
-    // TODO: replace with real Api call
-    fetch('http://localhost:4000/messages');
   };
 }
 
-export function processNewMessages(newMessageData: {[string]: ?{[Id]: {[Id]: MessageType}}}) {
-  // Mark that we have messages to avoid fetching multiple times.
+export function processNewMessages(newMessageData: { [string]: ?{ [Id]: { [Id]: MessageType } } }) {
   return {
     messages: newMessageData,
     type: 'RECEIVED_NEW_MESSAGES',
   };
 }
 
-export function processNewScores(scoreData: {[string]: number}) {
+export function processNewScores(scoreData: { [string]: number }) {
   return {
     scoreData,
     type: 'RECEIVED_NEW_SCORE',

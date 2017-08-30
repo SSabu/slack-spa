@@ -1,5 +1,5 @@
  import { Reducer } from 'redux-testkit';
- import storeReducer from '../Reducers/index';
+ import { storeReducer } from '../Reducers/index';
  import { processNewScores, processNewMessages } from '../Actions/index';
 
  const initialState = {

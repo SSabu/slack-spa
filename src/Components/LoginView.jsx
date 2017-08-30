@@ -10,6 +10,7 @@ import logo from '../images/slack-logo.png';
 import slack from '../images/slackIcon.png';
 import { connectWithSlack } from '../Actions/index';
 import type { Dispatch } from '../FlowTypes/';
+import injectWidgetId from '../Utils/utils';
 
 export function LoginView(props: Object) {
   const { connectWithSlack } = props;
@@ -42,8 +43,7 @@ LoginView.defaultProps = {
   connectWithSlack: PropTypes.function,
 };
 
-
 export const mapDispatchToProps = (dispatch: Dispatch) =>
   bindActionCreators({ connectWithSlack }, dispatch);
 
-export default connect(null, mapDispatchToProps)(LoginView);
+export default injectWidgetId(connect(null, mapDispatchToProps)(LoginView));

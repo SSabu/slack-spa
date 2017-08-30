@@ -14,7 +14,7 @@ export type MessageType = {
 export type ChannelData = {[string]: ?{[Id]: {[Id]: MessageType}}};
 
 export type State = {
-  // isShowingScores: boolean,
+  isShowingScores: boolean,
   isConnectedWithSlack: boolean,
   channelData: ChannelData,
   scoreData: {[string]: ?number},
@@ -23,3 +23,21 @@ export type State = {
 
 export type Dispatch = ({ type: string }) => void;
 export type GetState = () => State;
+
+export type OwnProps = {
+  widgetId: ?string,
+  isShowingScores: boolean,   // will need this later
+  isConnectedWithSlack: boolean,
+  channelData: channelData,
+  scoreData: {[string]: ?number},
+  selectedChannel: ?string,
+}
+
+export type DefaultProps = {
+  widgetId: ?string,
+  isShowingScores: boolean,   // will need this later
+  isConnectedWithSlack: boolean,
+  channelData: channelData,
+  scoreData: {[string]: ?number},
+  selectedChannel: ?string,
+};

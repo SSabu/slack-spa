@@ -4,10 +4,8 @@ import React from 'react';
 import { Image, List } from 'semantic-ui-react';
 import type { MessageType } from '../FlowTypes/';
 
-
-export default function Message(
-  { avatarImage, name, text, timestamp }: MessageType,
-) {
+// NOTE: props passed to Message need to be updated (see MessageList.js)
+export default function Message({ avatarImage, name, text, timestamp }: MessageType) {
   return (
     <List.Item className="listItem">
       <Image avatar src={avatarImage} />

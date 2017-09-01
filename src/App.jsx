@@ -13,9 +13,6 @@ import Toolbar from './Components/Toolbar';
 import type { DefaultProps, OwnProps, State } from './FlowTypes/';
 import { WIDGET_ID } from './Constants/';
 import './App.css';
-import { WIDGET_ID } from './Constants/';
-
-const PropTypes = require('prop-types');
 
 
 class App extends Component<DefaultProps, OwnProps, State> {
@@ -59,8 +56,8 @@ App.defaultProps = {
   widgetId: WIDGET_ID,
   isShowingScores: false, // will need this later
   isConnectedWithSlack: false,
-  channelData: { '#redux': {} },
-  scoreData: { score: 0.01 },
+  channelData: { 'redux': {} },
+  scoreData: { 'score': 0.01 },
   selectedChannel: null,
 };
 

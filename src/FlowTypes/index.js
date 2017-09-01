@@ -41,3 +41,7 @@ export type DefaultProps = {
   scoreData: {[string]: ?number},
   selectedChannel: ?string,
 };
+
+export type SlackApi = {
+  method(): Promise<mixed>,
+}

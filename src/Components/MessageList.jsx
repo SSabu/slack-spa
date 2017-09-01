@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import { List } from 'semantic-ui-react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { fetchMessagesForChannel } from '../Actions/index';
+import { fetchMessagesForChannel} from '../Actions/index';
 import Message from './Message';
 import owl from '../images/avatars/owl.png';
 import type { Dispatch, OwnProps, State } from '../FlowTypes/';

@@ -1,11 +1,11 @@
 // @flow
-
 /* eslint-disable */
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Dropdown, Image, Menu } from 'semantic-ui-react';
 import { selectChannel, fetchChannels } from '../Actions/index';
+//import SLACK_API from '../Utils/Api'
 import convertScoreToColorAndEmoji from '../Utils/';
 import frustrated from '../images/emojis/frustrated.jpg';
 import happy from '../images/emojis/happy.jpg';
@@ -78,8 +78,6 @@ export class Toolbar extends Component {
 }
 
 export const mapStateToProps = (state: State, ownProps: OwnProps) => {
-  console.log('** Toolbar ownProps', state, ownProps);
-
   const id = ownProps.widgetId;
   const selectedChannel = state.widgets.byId[id].selectedChannel;
   const score = state.widgets.byId[id].scoreData[selectedChannel];

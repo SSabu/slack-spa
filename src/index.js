@@ -4,9 +4,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import getSocket from './Sockets/';
-// import openSocket from 'socket.io-client';
-// import { processNewScores, processNewMessages } from './Actions/index';
 import rootReducer from './Reducers/';
+import SLACK_API from './Utils/Api';
 import store from './store';
 import { WIDGET_ID } from './Constants/';
 
@@ -25,4 +24,4 @@ registerServiceWorker();
 getSocket();
 
 export default App;
-export { rootReducer };
+export { rootReducer, SLACK_API };

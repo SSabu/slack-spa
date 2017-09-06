@@ -3,7 +3,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import getSocket from './Sockets/';
 import rootReducer from './Reducers/';
 import SLACK_API from './Utils/Api';
 import store from './store';
@@ -20,8 +19,6 @@ ReactDOM.render(
   document.getElementById('root'),
 );
 registerServiceWorker();
-
-getSocket();
 
 export default App;
 export { rootReducer, SLACK_API };

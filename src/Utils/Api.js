@@ -1,25 +1,22 @@
 // @flow
 
-// const PATH = 'https://databraid.localtunnel.me';
-const PATH = 'http://localhost:4000/';
+// TODO: Get to work with .env file
+const PATH = 'http://localhost:8001';
+// const PATH = process.env.SLACK_API_URL;
 
 /* eslint func-names: ["error", "never"] */
 function fetchRequest(path) {
-  return fetch(path);
+  return fetch(path).then(response => response.json()).catch(err => err);
 }
 
 export default class SLACK_API {
-
   static async fetchRequestChannels() {
-    const response = await fetchRequest(`${PATH}channels`);
-    const channels = await response.json();
+    const channels = await fetchRequest(`${PATH}/channels`);
     return channels;
-  };
-
-  static async fetchRequestMessagesForChannel() {
-    const response = await fetchRequest(`${PATH}messages`);
-    const messages = await response.json();
-    return messages;
   }
 
+  static async fetchRequestMessagesForChannel(channel) {
+    const messages = await fetchRequest(`${PATH}/messages/${channel}`);
+    return messages;
+  }
 }

@@ -30,7 +30,12 @@ export function storeReducer(state: State = stateDefaults, action: Action): Stat
       };
     case 'RECEIVED_CHANNEL_LIST': {
       newChannelData = { ...state.channelData };
-      const channelNames = action.channels;
+
+      /* NOTE: Channels come back as an array of objects with more than just channel name.
+      Perhaps this should be altered in the '/channels' route in the API. */
+      // const channelNames = action.channels;
+      const channelNames = action.channels.map(channel => channel.channelName);
+
       channelNames.forEach((channel) => {
         newChannelData[channel] = newChannelData[channel] || null;
       });
@@ -50,14 +55,9 @@ export function storeReducer(state: State = stateDefaults, action: Action): Stat
       newChannelData = { ...state.channelData };
       newChannelData[action.channel] = { ...newChannelData[action.channel] };
 
-      // NOTE: Messages for a channel come back as an array of objects
       action.messages.forEach((message) => {
-        newChannelData[action.channel][message.id] = message;
+        newChannelData[action.channel][message.messageId] = message;
       });
-      // NOTE: Not currently as an object of objects...
-      // Object.keys(action.messages).forEach((id) => {
-      //   newChannelData[action.channel][id] = action.messages[id];
-      // });
       return {
         ...state,
         channelData: newChannelData,

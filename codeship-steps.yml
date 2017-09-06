@@ -1,0 +1,6 @@
+- service: slack-spa
+  command: npm run lint
+- service: slack-spa
+  command: npm run test
+- service: slack-spa
+  command: npm run create-module

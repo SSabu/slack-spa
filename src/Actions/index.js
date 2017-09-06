@@ -1,14 +1,8 @@
 // @flow
 import { WIDGET_ID } from '../Constants/index';
 import type { MessageType, Id, Dispatch, GetState, SlackApi } from '../FlowTypes/';
-// TODO: Needs to be an environmental variable
-// const PATH = 'http://localhost:8001/';
 
 /* eslint func-names: ["error", "never"] */
-// TODO: remove after testing with the Slack API
-// function fetchRequest(path) {
-//   return fetch(path).then(response => response.json());
-// }
 
 export function connectWithSlack() {
   return {
@@ -18,8 +12,6 @@ export function connectWithSlack() {
 
 export function fetchChannels() {
   return async (dispatch: Dispatch, getState: GetState, { SLACK_API }: SlackApi) => {
-    // TODO: remove after testing with the Slack API
-    // const response = await fetchRequest(`${PATH}channels`);
     const channels = await SLACK_API.fetchRequestChannels();
     dispatch({
       channels,
@@ -31,12 +23,10 @@ export function fetchChannels() {
 export function fetchMessagesForChannel(channel: string) {
   return async (dispatch: Dispatch, getState: GetState, { SLACK_API }: SlackApi) => {
     const oldMessages = getState().widgets.byId[WIDGET_ID].channelData[channel];
-    const messages = await SLACK_API.fetchRequestMessagesForChannel();
-    if (oldMessages) {
-      // TODO: remove this after confirming that the current code works with the Slack API
-      // const messages = await fetchRequest(`${PATH}messages/${channel}`);
-      return;
-    }
+    if (oldMessages) return;
+
+    const messages = await SLACK_API.fetchRequestMessagesForChannel(channel);
+
     dispatch({
       channel,
       messages,

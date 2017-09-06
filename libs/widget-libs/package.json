@@ -1,7 +1,6 @@
 {
   "name": "@databraid/slack-widget",
-
-  "version": "1.0.6",
+  "version": "1.0.10",
   "description": "",
   "main": "index.js",
   "files": [
@@ -13,7 +12,6 @@
   },
   "author": "",
   "license": "ISC",
-
   "dependencies": {
     "classnames": "2.2.5",
     "enzyme-to-json": "1.5.1",
@@ -21,7 +19,6 @@
     "flow-bin": "0.51.1",
     "jest": "20.0.4",
     "jest-cli": "20.0.4",
-
     "moment": "2.18.1",
     "prop-types": "15.5.10",
     "react": "15.6.1",
@@ -46,7 +43,6 @@
     "eslint-plugin-react": "7.1.0",
     "react-addons-test-utils": "15.6.0",
     "react-scripts": "1.0.10",
-
     "react-test-renderer": "15.6.1",
     "redux-testkit": "1.0.6"
   }

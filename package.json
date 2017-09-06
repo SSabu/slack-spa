@@ -1,7 +1,7 @@
 {
   "name": "databraid-react-starter",
-  "version": "1.0.0",
-  "private": true,
+  "version": "1.0.1",
+  "private": false,
   "dependencies": {
     "classnames": "2.2.5",
     "enzyme-to-json": "1.5.1",
@@ -44,7 +44,10 @@
     "flow": "flow",
     "lint": "node_modules/eslint/bin/eslint.js --fix --ext=js --ext=jsx .",
     "start": "react-scripts start",
-    "test": "react-scripts test --env=jsdom --verbose"
+    "test": "react-scripts test --env=jsdom --verbose",
+    "install-module": "npm install --prefix ./libs/widget-libs/",
+    "build-module": "npm run build --prefix ./libs/widget-libs/",
+    "create-module": "npm run install-module && npm run build-module"
   },
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
   "main": "index.js",

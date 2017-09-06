@@ -26,7 +26,7 @@ export type GetState = () => State;
 
 export type OwnProps = {
   widgetId: ?string,
-  isShowingScores: boolean,   // will need this later
+  isShowingScores: boolean, // will need this later
   isConnectedWithSlack: boolean,
   channelData: channelData,
   scoreData: {[string]: ?number},
@@ -35,7 +35,7 @@ export type OwnProps = {
 
 export type DefaultProps = {
   widgetId: ?string,
-  isShowingScores: boolean,   // will need this later
+  isShowingScores: boolean, // will need this later
   isConnectedWithSlack: boolean,
   channelData: channelData,
   scoreData: {[string]: ?number},

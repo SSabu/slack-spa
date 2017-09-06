@@ -6,13 +6,12 @@ import type { Store } from 'redux';
 import { processNewScores, processNewMessages } from '../Actions/index';
 import store from '../store';
 
-// TODO: This endpoint needs to be an environemntal variable
-//const socket = openSocket('https://databraid.localtunnel.me');
-
-const socket = openSocket('http://localhost:4000');
+// TODO: Get the openSocket accept info from .env file
+const socket = openSocket('https://databraid.localtunnel.me');
+// const socket = openSocket(process.env.SOCKET_URL);
 
 // TODO: needs to be refactored to remove reference to the store.
-// Invoke it int the root app under componentWillMount() and use connect
+// Invoke it in the root app under componentWillMount() and use connect
 // function for under the hood dispatches
 
 export default function getSockets() {
